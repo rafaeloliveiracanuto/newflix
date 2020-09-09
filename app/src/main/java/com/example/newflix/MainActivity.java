@@ -47,5 +47,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    
+    private class MainAdapter extends RecyclerView.Adapter<MovieHolder> {
+
+        private final List<Movie> movies;
+
+        private MainAdapter(List<Movie> movies) {
+            this.movies = movies;
+        }
+
+        @NonNull
+        @Override
+        public MovieHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new MovieHolder(getLayoutInflater().inflate(R.layout.movie_item, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MovieHolder holder, int position) {
+            Movie movie = movies.get(position);
+            holder.textViewUrl.setText(movie.getCoverUrl() + "");
+        }
+
+        @Override
+        public int getItemCount() {
+            return movies.size();
+        }
+    }
 }
